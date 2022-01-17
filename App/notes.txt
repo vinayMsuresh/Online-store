@@ -1,0 +1,31 @@
+---> Relationship between multiple collection
+    -> Population:- It is the process of replacing the specified path in the document of one collection
+        with the actual document from the other collection.
+    ->populate() method to get the reference data from the actual document.
+
+    Model :- Category , Color..
+
+
+
+
+Deployment:-
+
+    -->First copy the client folder and paste in server folder.
+    ->then in client you build It
+    npm run build (react app)
+        -> then it create a build folder in that client folder
+    
+    server.js
+    const path = express('path');
+    app.use(express.static("client/build"));
+
+
+    app.get("*", (req, res)=>{
+        res.sendFile(path.resolve(__dirname, "./client/build","index.html"))
+    })
+
+
+    Deploy in heroku
+    sign up here
+    -> Install heroku cli in our system.
+    
