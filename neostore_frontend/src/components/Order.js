@@ -11,8 +11,7 @@ import { jsPDF } from "jspdf";
 const GREY = "#9E9E9E";
 export default function Order() {
     let [products,setProducts] = useState([]);
-    let [total, setTotal] = useState(0);
-    let [gst, setGst] = useState(0);
+    let [id, setId] = useState(0);
     const navigate = useNavigate();
     let user = JSON.parse(localStorage.getItem('user'));
 
@@ -35,8 +34,9 @@ export default function Order() {
     },[]);
     const generatePdf = (id) => {
         sessionStorage.setItem('order_id',id);
+        setId(id);
         const input = document.getElementById('pdf');
-        input.style.display = 'block';
+       setTimeout(()=>{ input.style.display = 'block';
         html2canvas(input,{useCORS:true}).then(canvas => {
             const pdf = new jsPDF();
             var width = pdf.internal.pageSize.getWidth();
@@ -48,6 +48,8 @@ export default function Order() {
             pdf.save("download.pdf");
         })
         input.style.display = 'none';
+        setId(0);},2000);
+        
     };
     const styles = {
         well: {
@@ -88,7 +90,7 @@ export default function Order() {
                     </Col>
                 </Row>
                 <div style={{display:'none'}} id='pdf'>
-                    <Login2 />                    
+                    {id.length>0 && <Login2 id={id} /> }               
                 </div>
             </Container>
         </div>

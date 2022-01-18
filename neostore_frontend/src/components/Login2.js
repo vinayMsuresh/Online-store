@@ -6,7 +6,7 @@ import { Container,Row,Form,Col,Navbar,Nav, Button } from "react-bootstrap";
 import { MAIN_URL } from '../config/Url';
 import { getOrd } from '../config/MyService';
 
-export default function Login2() {
+export default function Login2(props) {
   const styles={
      in:{
       display:"none"
@@ -21,7 +21,7 @@ export default function Login2() {
   let [subimage,setSubimage]=useState([])
   let [rate,setRate]=useState(0);
   useEffect(() => {
-    const order_id = sessionStorage.getItem('order_id');
+    const order_id = props.id;
    if(order_id){
      setUser(JSON.parse(localStorage.getItem('user')));
     getOrd(order_id)
@@ -35,6 +35,7 @@ export default function Login2() {
         console.log(res.data.order.product_id)
       });
     }
+    sessionStorage.clear();
   }, []);
 
     return (
