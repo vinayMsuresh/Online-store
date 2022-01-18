@@ -6,7 +6,7 @@ import { Container,Row,Form,Col,Navbar,Nav, Button } from "react-bootstrap";
 import { MAIN_URL } from '../config/Url';
 import { getOrd } from '../config/MyService';
 
-export default function Login2(props) {
+export default function Pdf(props) {
   const styles={
      in:{
       display:"none"

@@ -21,7 +21,7 @@ import Logo from './components/Logo';
 import Order from './components/Order';
 import SelectAddress from './components/SelectAddress';
 import Checkout from './components/Checkout';
-import Login2 from './components/Login2';
+import Pdf from './components/Pdf';
 import Products from './components/Products';
 function App() {
   return (
@@ -37,7 +37,7 @@ function App() {
           <Route path="/addlogo" element={<Logo/>}/>
           <Route path='/order' element={<Order/>} />
           <Route path="/login" element={<Login/>} />
-          <Route path='/pdf' element={<Login2/>} />
+          <Route path='/pdf' element={<Pdf/>} />
           <Route path="/register" element={<Registration/>} />
           <Route path="/locateus" element={<MapContainer/>} />
           <Route path="/thanks" element={<ThanksPage/>} />

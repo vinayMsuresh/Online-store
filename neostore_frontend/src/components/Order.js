@@ -4,7 +4,7 @@ import { getOrder } from '../config/MyService';
 import { useNavigate } from 'react-router-dom';
 import MyAccount from './MyAccount';
 import { MAIN_URL } from '../config/Url';
-import Login2 from './Login2';
+import Pdf from './Pdf';
 import moment from 'moment';
 import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
@@ -90,7 +90,7 @@ export default function Order() {
                     </Col>
                 </Row>
                 <div style={{display:'none'}} id='pdf'>
-                    {id.length>0 && <Login2 id={id} /> }               
+                    {id.length>0 && <Pdf id={id} /> }               
                 </div>
             </Container>
         </div>
