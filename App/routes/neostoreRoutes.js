@@ -103,6 +103,7 @@ router.get('/forgot/:email',(req, res)=>{
           };
           transporter.sendMail(mailOptions, (error, info)=>{
             if (error) {
+                console.log(error)
                 res.json({err:"Email error",status_code:200})
             } else {
               console.log('Email sent: ' + info.response);
@@ -118,7 +119,10 @@ router.post('/forgot/change/:email', (req, res)=>{
     const hash = bcrypt.hashSync(password, saltRounds);
     const userdata = userData(email);
     userdata.then(response=>{
-        console.log(response)
+            if(response.password === null){
+                res.json({"err":"You don't have password to reset"});
+            }
+            else{
             if(response.email){
                 userModel.updateOne({email:email},{$set:{password:hash}},(err)=>{
                     if(err){
@@ -129,6 +133,7 @@ router.post('/forgot/change/:email', (req, res)=>{
                     }
                 })
             }
+        }
     })
 })
 
@@ -168,7 +173,11 @@ router.post('/changepassword',authenticateToken,(req,res)=>{
             }
             else if(info===null){
                 res.json({err:"User data not found",status_code:400})
-            }else{
+            }
+            else if(info.password === null){
+                res.json({"err":"You don't have password to reset"});
+            }
+            else{
                 if(bcrypt.compareSync(old_password, info.password)){
                     const hash = bcrypt.hashSync(password, saltRounds);
                     userModel.updateOne({email:email},{$set:{password:hash}},(err)=>{

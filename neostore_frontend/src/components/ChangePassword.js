@@ -10,7 +10,8 @@ export default function ChangePassword() {
     let [password,setPassword]=useState('');
         let [cpassword,setCpassword]=useState('');
         const change=()=>{
-            let data = JSON.parse(sessionStorage.getItem('user'));
+            let data = JSON.parse(localStorage.getItem('user'));
+            console.log(data);
             if(password === cpassword){
                 let change_data = {old_password:old_password, password:password,email:data.email};
                 updpassword(change_data)
