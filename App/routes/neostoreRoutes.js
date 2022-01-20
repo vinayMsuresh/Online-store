@@ -119,7 +119,7 @@ router.post('/forgot/change/:email', (req, res)=>{
     const hash = bcrypt.hashSync(password, saltRounds);
     const userdata = userData(email);
     userdata.then(response=>{
-            if(response.password === null){
+            if(response.password == null){
                 res.json({"err":"You don't have password to reset"});
             }
             else{
@@ -174,7 +174,7 @@ router.post('/changepassword',authenticateToken,(req,res)=>{
             else if(info===null){
                 res.json({err:"User data not found",status_code:400})
             }
-            else if(info.password === null){
+            else if(info.password == null){
                 res.json({"err":"You don't have password to reset"});
             }
             else{
